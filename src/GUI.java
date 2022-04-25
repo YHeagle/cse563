@@ -40,23 +40,34 @@ public class GUI extends JFrame implements ActionListener
 		//The overall Jframe
 		jf = new JFrame();
 		jf.setSize(800, 800);
+		jf.setLayout(new FlowLayout());
 		jf.setTitle("CSE460 Final Project");
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setVisible(true);
-		
-		
-		
+
+		//add point panel
+		PointPanel panel = new PointPanel();
+		jf.setContentPane(panel);
+		panel.addMouseListener(new CanvasClickListener(panel));
+
+
 		//Menu Bar
 		JMenuBar jmb = new JMenuBar();
 		jf.setJMenuBar(jmb);
-		
-		//Options choice
 		JMenu file = new JMenu("Options");
 		file.setMnemonic(KeyEvent.VK_F);
-		jmb.add(file);			
+		jmb.add(file);
+				
+				
+				
+		
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		//Options
+		jf.setVisible(true);
+
+				
+		
+		
+		//Options for menu
 		Load = new JMenuItem("Load");
 		Load.setMnemonic(KeyEvent.VK_L);
 		Load.addActionListener(this);
@@ -98,8 +109,9 @@ public class GUI extends JFrame implements ActionListener
 		
 		
 		
-		jf.setVisible(true);
-		
+		//jf.setVisible(true);
+		while (true)
+			jf.repaint();
 	}
 
 	
