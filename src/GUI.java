@@ -33,7 +33,8 @@ public class GUI extends JFrame implements ActionListener
 	JMenuItem RandomGen;
 	JFrame jf;
 	
-	
+	//panel as global object
+	PointPanel panel = new PointPanel();	
 	
 	public GUI()
 	{
@@ -42,19 +43,18 @@ public class GUI extends JFrame implements ActionListener
 		jf.setSize(800, 800);
 		jf.setLayout(new FlowLayout());
 		jf.setTitle("CSE460 Final Project");
-
-		//add point panel
-		PointPanel panel = new PointPanel();
-		jf.setContentPane(panel);
+		
+		
+			 
+		jf.setContentPane(panel);		
 		panel.addMouseListener(new CanvasClickListener(panel));
-
-
+		
 		//Menu Bar
 		JMenuBar jmb = new JMenuBar();
-		jf.setJMenuBar(jmb);
-		JMenu file = new JMenu("Options");
-		file.setMnemonic(KeyEvent.VK_F);
-		jmb.add(file);
+				jf.setJMenuBar(jmb);
+				JMenu file = new JMenu("Options");
+				file.setMnemonic(KeyEvent.VK_F);
+				jmb.add(file);	
 				
 				
 				
@@ -63,11 +63,14 @@ public class GUI extends JFrame implements ActionListener
 		
 		
 		jf.setVisible(true);
-
+		
+		
+		
+		//Options choice
 				
 		
 		
-		//Options for menu
+		//Options
 		Load = new JMenuItem("Load");
 		Load.setMnemonic(KeyEvent.VK_L);
 		Load.addActionListener(this);
@@ -162,6 +165,8 @@ public class GUI extends JFrame implements ActionListener
 		else if(arg0.getSource() == Clear)
 		{
 			
+			panel.clear();
+			
 		}
 		
 		else if(arg0.getSource() == Run)
@@ -171,7 +176,8 @@ public class GUI extends JFrame implements ActionListener
 					
 		else if(arg0.getSource() == RandomGen)
 		{
-			
+			panel.randomGenerator();
+					
 		}
 			
 		
