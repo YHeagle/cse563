@@ -26,8 +26,4 @@ public class Point{
 		g.fillOval(x-2, y-2, 4, 4);
 		
 	}
-	String toStirng(){
-		return ("X = "+ getX()+ "   y = "+ getY());
-
-	}
 }

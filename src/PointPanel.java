@@ -4,13 +4,8 @@ import java.util.*;
 import javax.swing.JPanel;
 public class PointPanel extends JPanel
 {
-<<<<<<< HEAD
-	
-	private  List<Point> points = new LinkedList<Point>();
-=======
 	private int randomNum = 50;
 	private List<Point> points = new LinkedList<Point>();
->>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 	
 	public void addPoint(Point point)
 	{
@@ -25,16 +20,16 @@ public class PointPanel extends JPanel
 			p.draw(arg0);
 		}
 	}
-
+	
 	public List<Point> getPoints(){
 		return points;
 	}
 	
-<<<<<<< HEAD
 	public void setPoints(List<Point> points){
 		this.points = points;
 	}
-=======
+	
+	
 	//clear the point Linkedlist
 	public void clear()
 	{
@@ -55,7 +50,6 @@ public class PointPanel extends JPanel
 	}
 	
 	
->>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 	
 	
 
