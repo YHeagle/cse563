@@ -201,7 +201,7 @@ public class GUI extends JFrame implements ActionListener
 	        distance = Integer.parseInt(value);
 
 	        ArrayList<Point> gridPoint  = new ArrayList<>(panel.getPoints());
-	    	Dbscan d = new Dbscan(gridPoint,distance*distance);
+	    	Dbscan d = new Dbscan(gridPoint,distance);
 	    	
 	    	ArrayList<Pair> result = d.runDbscan();
 			panel.setResult(result);

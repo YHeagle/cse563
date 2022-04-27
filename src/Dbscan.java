@@ -72,7 +72,7 @@ public class Dbscan {
         }
     }
     private float calculateDistance(Point p1,Point p2){
-        return (p1.getX()-p2.getX())*(p1.getX()-p2.getX()) + (p1.getY()-p2.getY())*(p1.getY()-p2.getY());
+        return (float) Math.sqrt((p1.getX()-p2.getX())*(p1.getX()-p2.getX()) + (p1.getY()-p2.getY())*(p1.getY()-p2.getY()));
     }
     private int getRandomNumber(int size){
         return rand.nextInt(size);
