@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 public class PointPanel extends JPanel
 {
 	
-	private List<Point> points = new LinkedList<Point>();
+	private  List<Point> points = new LinkedList<Point>();
 	
 	public void addPoint(Point point)
 	{
@@ -19,8 +19,14 @@ public class PointPanel extends JPanel
 			p.draw(arg0);
 		}
 	}
+
+	public List<Point> getPoints(){
+		return points;
+	}
 	
-	
+	public void setPoints(List<Point> points){
+		this.points = points;
+	}
 	
 	
 
