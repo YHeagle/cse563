@@ -71,7 +71,7 @@ public class PointPanel extends JPanel
 	int i=0;
 	public void draw(){
 		i=0;
-		Timer t= new Timer(100, new ActionListener() {
+		Timer t= new Timer(500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				i++;
