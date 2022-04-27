@@ -1,3 +1,4 @@
+import java.awt.desktop.SystemSleepEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -29,14 +30,25 @@ public class GUI extends JFrame implements ActionListener
 	JMenuItem Run;
 	JMenuItem RandomGen;
 	JFrame jf;
+<<<<<<< HEAD
 	PointPanel panel;
 
 	public GUI() {
 		// The overall Jframe
+=======
+	
+	//panel as global object
+	PointPanel panel = new PointPanel();	
+	
+	public GUI()
+	{
+		//The overall Jframe
+>>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 		jf = new JFrame();
 		jf.setSize(800, 800);
 		jf.setLayout(new FlowLayout());
 		jf.setTitle("CSE460 Final Project");
+<<<<<<< HEAD
 
 		// add point panel
 		panel = new PointPanel();
@@ -50,10 +62,39 @@ public class GUI extends JFrame implements ActionListener
 		file.setMnemonic(KeyEvent.VK_F);
 		jmb.add(file);
 
+=======
+		
+		
+			 
+		jf.setContentPane(panel);		
+		panel.addMouseListener(new CanvasClickListener(panel));
+		
+		//Menu Bar
+		JMenuBar jmb = new JMenuBar();
+				jf.setJMenuBar(jmb);
+				JMenu file = new JMenu("Options");
+				file.setMnemonic(KeyEvent.VK_F);
+				jmb.add(file);	
+				
+				
+				
+		
+>>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
+<<<<<<< HEAD
 
 		// Options for menu
+=======
+		
+		
+		
+		//Options choice
+				
+		
+		
+		//Options
+>>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 		Load = new JMenuItem("Load");
 		Load.setMnemonic(KeyEvent.VK_L);
 		Load.addActionListener(this);
@@ -129,6 +170,7 @@ public class GUI extends JFrame implements ActionListener
 
 		else if (arg0.getSource() == Save) {
 			
+<<<<<<< HEAD
 			//Display the save Roaster diagram
 
 			String fileName = "";
@@ -164,6 +206,36 @@ public class GUI extends JFrame implements ActionListener
 
 		else if (arg0.getSource() == Run) {
 
+=======
+			panel.clear();
+			
+		}
+		
+		else if(arg0.getSource() == Run)
+		{
+			ArrayList<Point> gridPoint  = new ArrayList<>();
+//			for(int i=0;i<100;i++){
+//				gridPoint.add(new Point(i*10,i*20));
+//			}
+//			gridPoint.add(new Point(1,1));
+			Dbscan d = new Dbscan(gridPoint,5);
+			ArrayList<ArrayList<Pair>> result= d.runDbscan();
+//			for(int i=0;i<x.size();i++){
+//				System.out.println();
+//				System.out.println(i);
+//				for (int j=0;j<x.get(i).size();j++){
+//					System.out.print(x.get(i).get(j).point1.toStirng() + "   ");
+//					System.out.println(x.get(i).get(j).point2);
+//
+//				}
+//			}
+		}
+					
+		else if(arg0.getSource() == RandomGen)
+		{
+			panel.randomGenerator();
+					
+>>>>>>> 0f7a587c826740aa1376d03a3f560df44ff3fe0f
 		}
 
 		else if (arg0.getSource() == RandomGen) {
