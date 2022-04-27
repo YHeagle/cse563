@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -110,9 +112,6 @@ public class GUI extends JFrame implements ActionListener
 		
 		file.addSeparator();
 		
-		
-		
-		
 		//jf.setVisible(true);
 		while (true)
 			jf.repaint();
@@ -120,6 +119,7 @@ public class GUI extends JFrame implements ActionListener
 
 	
 	// Here is the Actionlistener that will do the job when mouse clicks on it
+	@SuppressWarnings("null")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
@@ -167,7 +167,7 @@ public class GUI extends JFrame implements ActionListener
 								List<Point> points = panel.getPoints();
 								StringBuilder fileData = new StringBuilder();
 								for (Point p : points) {
-									System.out.println(p.getX() + "=x  y=" + p.getY());
+									System.out.println(p.getX() + "x= \t y=" + p.getY());
 									fileData.append("" + p.getX() + ",");
 									fileData.append("" + p.getY() + "\n");
 								}
@@ -200,8 +200,10 @@ public class GUI extends JFrame implements ActionListener
 			String value = JOptionPane.showInputDialog("Enter the distance value","");
 	        distance = Integer.parseInt(value);
 	        
-	        
-	        
+	        ArrayList<Point> gridPoint  = new ArrayList<>();
+	    	Dbscan d = new Dbscan(gridPoint,distance);
+	    	
+	    	d.runDbscan();
 		}
 					
 		else if(arg0.getSource() == RandomGen)
@@ -210,16 +212,5 @@ public class GUI extends JFrame implements ActionListener
 					
 		}
 			
-		
-		
-		
-		
-
-				
 		}
 	}
-		
-
-	
-	
-	
