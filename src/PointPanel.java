@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.JPanel;
-
+import javax.swing.Timer;
 public class PointPanel extends JPanel
 {
 	private int randomNum = 50;
@@ -13,40 +15,25 @@ public class PointPanel extends JPanel
 		points.add(point);
 		//this.repaint();
 	}
-	
-	ArrayList<Point> gridPoint  = new ArrayList<>();
-	Dbscan d = new Dbscan(gridPoint,50);
-	
-	ArrayList<ArrayList<Pair>> result= d.runDbscan();
-	
-	public int X1, X2, Y1, Y2;
-	
+
+
+	ArrayList<Pair> result = new ArrayList<>();
+
+
 	@Override
-	public void paint(Graphics arg0) {
-		
-		for (int i = 0; i < result.size(); i++) {
-	        for (int j = 0; j < result.get(i).size(); j++) {
-	        	X1=result.get(i).get(j).point1.getX();
-	        	Y1=result.get(i).get(j).point1.getY();
-	        	X2=result.get(i).get(j).point2.getX();
-	        	Y2=result.get(i).get(j).point2.getY();
-	        	
-	        	arg0.setColor(Color.red);
-	        	arg0.drawLine(X1, Y1, X2, Y2);
-	        	
-	        	try {
-					arg0.wait(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        	
-	        }
-	    }
-		
-		for(Point p : points)
-		{
-			p.draw(arg0);
+	public void paint(Graphics g) {
+		if (result!=null) {
+			for (int j=0;j<i && j<result.size();j++) {
+				Pair p =result.get(j);
+				if (p.point2==null)
+					continue;
+				g.setColor(Color.red);
+				g.drawLine(p.point1.getX(),p.point1.getY(), p.point2.getX(), p.point2.getY());
+			}
+
+		}
+		for(Point p : points) {
+			p.draw(g);
 			
 		}
 	}
@@ -63,6 +50,7 @@ public class PointPanel extends JPanel
 	public void clear()
 	{
 		points.clear();
+		result.clear();
 	}
 	
 	public void randomGenerator()
@@ -76,5 +64,21 @@ public class PointPanel extends JPanel
 			points.add(new Point(x, y));
 		}
 	}
-	
+
+	public void setResult(ArrayList<Pair> p){
+		this.result= p;
+	}
+	int i=0;
+	public void draw(){
+		i=0;
+		Timer t= new Timer(100, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				i++;
+
+		};
+
+		});
+		t.start();
+	}
 }

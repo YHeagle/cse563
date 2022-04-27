@@ -126,7 +126,7 @@ public class GUI extends JFrame implements ActionListener
 		//Action listener for Load
 		// Action listener for Load
 				if (arg0.getSource() == Load) {
-
+					panel.clear();
 					if (response == JFileChooser.APPROVE_OPTION) {
 
 						 //Display the loaded file (points)
@@ -199,11 +199,13 @@ public class GUI extends JFrame implements ActionListener
 		{
 			String value = JOptionPane.showInputDialog("Enter the distance value","");
 	        distance = Integer.parseInt(value);
-	        
-	        ArrayList<Point> gridPoint  = new ArrayList<>();
-	    	Dbscan d = new Dbscan(gridPoint,distance);
+
+	        ArrayList<Point> gridPoint  = new ArrayList<>(panel.getPoints());
+	    	Dbscan d = new Dbscan(gridPoint,distance*distance);
 	    	
-	    	d.runDbscan();
+	    	ArrayList<Pair> result = d.runDbscan();
+			panel.setResult(result);
+			panel.draw();
 		}
 					
 		else if(arg0.getSource() == RandomGen)
@@ -213,4 +215,7 @@ public class GUI extends JFrame implements ActionListener
 		}
 			
 		}
-	}
+
+
+
+}

@@ -14,8 +14,8 @@ public class Dbscan {
     public void setGridPoint(ArrayList<Point> gridPoint){
         this.gridPoint = gridPoint;
     }
-    public ArrayList<ArrayList<Pair>> runDbscan(){
-        ArrayList<ArrayList<Pair>> result = new ArrayList<>();
+    public ArrayList<Pair> runDbscan(){
+        ArrayList<Pair> result = new ArrayList<>();
         ArrayList<Point> tempGridPoint=gridPoint;
 
         int i =0;
@@ -25,7 +25,7 @@ public class Dbscan {
             System.out.println(nearestNeighbours.size());
 
             removeVisitedElements(tempGridPoint, nearestNeighbours);
-            result.add(nearestNeighbours);
+            result.addAll(nearestNeighbours);
             i++;
         }
         return result;
