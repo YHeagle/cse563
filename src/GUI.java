@@ -1,3 +1,4 @@
+import java.awt.desktop.SystemSleepEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -171,7 +172,22 @@ public class GUI extends JFrame implements ActionListener
 		
 		else if(arg0.getSource() == Run)
 		{
-			
+			ArrayList<Point> gridPoint  = new ArrayList<>();
+//			for(int i=0;i<100;i++){
+//				gridPoint.add(new Point(i*10,i*20));
+//			}
+//			gridPoint.add(new Point(1,1));
+			Dbscan d = new Dbscan(gridPoint,5);
+			ArrayList<ArrayList<Pair>> result= d.runDbscan();
+//			for(int i=0;i<x.size();i++){
+//				System.out.println();
+//				System.out.println(i);
+//				for (int j=0;j<x.get(i).size();j++){
+//					System.out.print(x.get(i).get(j).point1.toStirng() + "   ");
+//					System.out.println(x.get(i).get(j).point2);
+//
+//				}
+//			}
 		}
 					
 		else if(arg0.getSource() == RandomGen)

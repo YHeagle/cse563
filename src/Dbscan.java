@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
+
 public class Dbscan {
     private ArrayList<Point> gridPoint;
     private Random rand;
@@ -21,30 +19,35 @@ public class Dbscan {
         ArrayList<Point> tempGridPoint=gridPoint;
 
         int i =0;
-        while(tempGridPoint.size()!=0){
+        while(tempGridPoint.size()>0){
             int index = getRandomNumber(tempGridPoint.size());
             ArrayList<Pair> nearestNeighbours = getNearestScannedNeighbours(tempGridPoint , index);
+            System.out.println(nearestNeighbours.size());
+
             removeVisitedElements(tempGridPoint, nearestNeighbours);
             result.add(nearestNeighbours);
             i++;
         }
         return result;
     }
+    static class The_Comparator implements Comparator<Pair> {
+        public int compare(Pair p1, Pair p2) {
+            return Float.compare(p1.distance, p2.distance);
+        }
+    }
     private ArrayList<Pair> getNearestScannedNeighbours(ArrayList<Point> tempGridPoint, int index){
-        PriorityQueue<Pair > queue=new PriorityQueue<Pair>();
+        PriorityQueue<Pair > queue=new PriorityQueue<Pair>(new The_Comparator());
         queue.add(new Pair(0,tempGridPoint.get(index),null));
         ArrayList<Pair> result = new ArrayList<>();
+
         HashMap<Point,Integer> visited = new HashMap<>();
 
         while(!queue.isEmpty()){
             Pair p = queue.remove();
-
             if(visited.containsKey(p.point1)){
                 continue;
             }
-            if (p.point2!=null){
-                result.add(p);
-            }
+            result.add(p);
             visited.put(p.point1,1);
             for (Point point : tempGridPoint) {
 
@@ -69,7 +72,7 @@ public class Dbscan {
         }
     }
     private float calculateDistance(Point p1,Point p2){
-        return (p1.getX()-p2.getX())*(p1.getX()-p2.getX()) + (p1.getY()-p2.getY())*(p1.getX()-p2.getX());
+        return (p1.getX()-p2.getX())*(p1.getX()-p2.getX()) + (p1.getY()-p2.getY())*(p1.getY()-p2.getY());
     }
     private int getRandomNumber(int size){
         return rand.nextInt(size);
